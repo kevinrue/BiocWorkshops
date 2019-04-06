@@ -94,6 +94,7 @@ There is also scope for participants to apply  [_iSEE_](http://bioconductor.org/
 ### Preparation of example scRNAseq data
 <!-- What data representation do we use? Sparse matrices, HDF5? -->
 <!-- Quick overview of SummarizedExperiment/SingleCellExperiment/other extensions -->
+<!-- Compute a range of dimensionality reduction results (perhaps showcase BiocParallel in the process) -->
 <!-- Reminder that many types of data can be read directly into SummarizedExperiment objects (with DropletUtils, tximeta, etc) -->
 
 ### Overview of the _iSEE_ package
