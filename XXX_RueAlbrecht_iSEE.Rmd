@@ -104,6 +104,7 @@ There is also scope for participants to apply `r Biocpkg("iSEE")` to their own d
 
 <!-- What data representation do we use? Sparse matrices, HDF5? -->
 <!-- Quick overview of SummarizedExperiment/SingleCellExperiment/other extensions -->
+<!-- Compute a range of dimensionality reduction results (perhaps showcase BiocParallel in the process) -->
 <!-- Reminder that many types of data can be read directly into SummarizedExperiment objects (with DropletUtils, tximeta, etc) -->
 
 We use the `r Biocpkg("TENxPBMCData")` package to load example data.
