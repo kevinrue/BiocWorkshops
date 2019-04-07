@@ -1,7 +1,15 @@
+
+```{r setup, include=FALSE}
+suppressPackageStartupMessages({
+    require(BiocStyle)
+})
+```
+
 # iSEE: Interactive visualization of `SummarizedExperiment` objects
 
 Authors:
-    Kevin Rue-Albrecht^[Institution],
+    Kevin Rue-Albrecht^[Kennedy Institute of Rheumatology, University of Oxford,
+    Headington, Oxford OX3 7FY, UK.],
     Charlotte Soneson^[Friedrich Miescher Institute for Biomedical Research and SIB Swiss Institute of Bioinformatics],
     Federico Marini^[Another Institution],
     Aaron TL Lun^[Another Institution].
@@ -12,7 +20,7 @@ Last modified: 4 April, 2019.
 
 ### Description
 
-This workshop demonstrates the use of the [_iSEE_](http://bioconductor.org/packages/iSEE/) package to create and configure interactive applications for the exploration of various types of genomics data sets (e.g., bulk and single-cell RNA-seq, CyTOF, gene expression microarray).
+This workshop demonstrates the use of the `r Biocpkg("iSEE")` package to create and configure interactive applications for the exploration of various types of genomics data sets (e.g., bulk and single-cell RNA-seq, CyTOF, gene expression microarray).
 
 This workshop will be presented as a lab session that combines an instructor-led live demo, followed by hands-on experimentation guided by completely worked examples and stand-alone notes that participants may continue to use after the workshop.
 
@@ -20,7 +28,7 @@ The instructor-led live demo comprises three parts:
 
 1. Brief lecture on the package concept and functionality
 2. Overview of the graphical user interface
-3. Instructions to preconfigure [_iSEE_](http://bioconductor.org/packages/iSEE/) apps
+3. Instructions to preconfigure `r Biocpkg("iSEE")` apps
 
 The hands-on lab comprises three part:
 
@@ -33,9 +41,9 @@ Participants are encouraged to ask questions at any time during the workshop.
 ### Pre-requisites
 
 * Basic knowledge of [_R_](https://www.r-project.org/about.html) syntax and the use of data-frames
-* Familiarity with the [`SummarizedExperiment`](http://bioconductor.org/packages/SummarizedExperiment) and [`SingleCellExperiment`](http://bioconductor.org/packages/SingleCellExperiment) classes
-* Familiarity with the [_shiny_](https://CRAN.R-project.org/package=shiny) CRAN package
-* Familiarity with the [_scRNAseq_](http://bioconductor.org/packages/scRNAseq/) package and [vignette](https://bioconductor.org/packages/release/data/experiment/vignettes/scRNAseq/inst/doc/scRNAseq.html)
+* Familiarity with the `r Biocpkg("SummarizedExperiment")` and `r Biocpkg("SingleCellExperiment")` classes
+* Familiarity with the `r CRANpkg("shiny")` CRAN package
+* Familiarity with the `r Biocpkg("TENxPBMCData")` package and vignette
 
 Additional background reading about the programming environment, relevant packages, and example use cases:
 
@@ -46,7 +54,7 @@ Additional background reading about the programming environment, relevant packag
 ### Participation
 
 Students will participate by following along an [_R markdown_](https://rmarkdown.rstudio.com/) document, and asking questions throughout the workshop.
-There is also scope for participants to apply  [_iSEE_](http://bioconductor.org/packages/iSEE/) to their own data sets, and fuel the discussion with more questions about specific use cases.
+There is also scope for participants to apply `r Biocpkg("iSEE")` to their own data sets, and fuel the discussion with more questions about specific use cases.
 
 ### _R_ / _Bioconductor_ packages used
 
@@ -55,6 +63,7 @@ There is also scope for participants to apply  [_iSEE_](http://bioconductor.org/
 3. _SingleCellExperiment_: https://bioconductor.org/packages/SingleCellExperiment
 4. _scater_: https://bioconductor.org/packages/scater
 5. _scran_: https://bioconductor.org/packages/scran
+6. _TENxPBMCData_: https://bioconductor.org/packages/TENxPBMCData
 
 ### Time outline
 
@@ -92,9 +101,60 @@ There is also scope for participants to apply  [_iSEE_](http://bioconductor.org/
 ## Workshop
 
 ### Preparation of example scRNAseq data
+
 <!-- What data representation do we use? Sparse matrices, HDF5? -->
 <!-- Quick overview of SummarizedExperiment/SingleCellExperiment/other extensions -->
 <!-- Reminder that many types of data can be read directly into SummarizedExperiment objects (with DropletUtils, tximeta, etc) -->
+
+We use the `r Biocpkg("TENxPBMCData")` package to load example data.
+
+
+```{r}
+suppressPackageStartupMessages({
+    library(TENxPBMCData)
+})
+```
+
+The man page for the `TENxPBMCData()` function gives an idea of the datasets available.
+
+```{r, eval=FALSE}
+help(TENxPBMCData)
+```
+
+Load the `"pbmc3k"` dataset.
+The first time, this will download the dataset to a local cache, which takes some time, depending on the speed of your internet connection.
+Subsequent times, this will load the dataset directly from the local cache.
+
+```{r, message=FALSE, warning=FALSE}
+sce <- TENxPBMCData(dataset = "pbmc3k")
+```
+
+At this point we can inspect the dataset.
+
+```{r}
+sce
+```
+
+In particular, this summary view indicates that the following pieces of information are available:
+
+- An assay matrix named `"counts"`
+- Row names (i.e. genes) are Ensembl gene identifiers
+- Row metadata include the official gene symbol, and the gene symbol used by the 10x CellRanger pipeline
+- Column names (i.e., cells) are not initialized and left to `NULL`
+- Column metadata include, among others, the cell barcode (`"Barcode"`) and the donor identifier (`"Individual"`).
+
+This is already sufficient information to launch an app and visualize the available data and metadata.
+
+```{r}
+suppressPackageStartupMessages({
+    library(iSEE)
+})
+if (interactive()){
+    iSEE(sce)
+}
+```
+
+Note that the `iSEE()` function automatically detects the types of information available in the `sce` object, and enable only panels for which the relevant data is available.
 
 ### Overview of the _iSEE_ package
 <!-- Talk a bit about the usefulness of visualization. -->
