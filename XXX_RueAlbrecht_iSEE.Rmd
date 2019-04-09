@@ -110,10 +110,8 @@ There is also scope for participants to apply `r Biocpkg("iSEE")` to their own d
 We use the `r Biocpkg("TENxPBMCData")` package to load example data.
 
 
-```{r}
-suppressPackageStartupMessages({
-    library(TENxPBMCData)
-})
+```{r, message=FALSE}
+library(TENxPBMCData)
 ```
 
 The man page for the `TENxPBMCData()` function gives an idea of the datasets available.
@@ -146,10 +144,8 @@ In particular, this summary view indicates that the following pieces of informat
 
 This is already sufficient information to launch an app and visualize the available data and metadata.
 
-```{r}
-suppressPackageStartupMessages({
-    library(iSEE)
-})
+```{r, message=FALSE}
+library(iSEE)
 if (interactive()){
     iSEE(sce)
 }
