@@ -343,6 +343,21 @@ discuss point transmission in more detail later in the workshop.
 
 ![](XXX_RueAlbrecht_iSEE/redDimPlotSelectionParams.png)
 
+#### Additional controls
+The top-left corner of the iSEE application provides additional controls for
+reproducibility, configuration and help. Each of these will be discussed in more
+detail later in the workflow.
+
+- Panel organization: 
+<img width="22%" src="XXX_RueAlbrecht_iSEE/PanelOrganization.png"/>
+- Diagnostics:
+<img width="22%" src="XXX_RueAlbrecht_iSEE/Diagnostics.png"/>
+- Documentation:
+<img width="22%" src="XXX_RueAlbrecht_iSEE/Documentation.png"/>
+- Additional info:
+<img width="22%" src="XXX_RueAlbrecht_iSEE/additionalInfo.png"/>
+
+
 <!-- Mention all panel types -->
 <!-- Show how to change what is plotted, faceting, changing appearance/color -->
 <!-- Transmit selections -->
