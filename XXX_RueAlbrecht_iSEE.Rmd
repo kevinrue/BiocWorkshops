@@ -16,7 +16,7 @@ Authors:
     Kevin Rue-Albrecht^[Kennedy Institute of Rheumatology, University of Oxford,
     Headington, Oxford OX3 7FY, UK.],
     Charlotte Soneson^[Friedrich Miescher Institute for Biomedical Research and SIB Swiss Institute of Bioinformatics],
-    Federico Marini^[Another Institution],
+    Federico Marini^[Center for Thrombosis and Hemostasis Mainz (CTH) and Institute of Medical Biostatistics, Epidemiology and Informatics (IMBEI), University Medical Center of the Johannes Gutenberg University Mainz],
     Aaron TL Lun^[Another Institution].
     <br/>
 Last modified: 4 April, 2019.
