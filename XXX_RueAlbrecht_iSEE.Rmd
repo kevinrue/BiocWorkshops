@@ -389,3 +389,9 @@ detail later in the workflow.
   * `iSEE` in production: [http://www.teichlab.org/singlecell-treg](http://www.teichlab.org/singlecell-treg)
 * Custom panel examples: [https://github.com/kevinrue/iSEE_custom](https://github.com/kevinrue/iSEE_custom)
 * Development version (bug reports etc): [https://github.com/csoneson/isee](https://github.com/csoneson/isee)
+
+## Session info {-}
+
+```{r}
+sessionInfo()
+```
