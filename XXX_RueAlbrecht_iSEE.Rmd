@@ -258,33 +258,90 @@ sce
 
 ### Overview of the _iSEE_ package
 <!-- Talk a bit about the usefulness of visualization. -->
+Mention that for simplicity, we will typically refer to a `SummarizedExperiment`
+below; however, everything will work seamlessly for objects of any class
+extending `SummarizedExperiment` as well (e.g., `SingleCellExperiment`,
+`DESeqDataSet`).
 
 ### The user interface
 ![](XXX_RueAlbrecht_iSEE/iSEEinterface.png)
 
 #### Reduced dimension plot
+The reduced dimension plot can display any reduced dimension representation that
+is present in the `reducedDim` slot of the `SingleCellExperiment` object. Note
+that this slot is not defined for the base `SummarizedExperiment` class.
+ 
 ![](XXX_RueAlbrecht_iSEE/redDimPlot.png)
 
 #### Column data plot
+The column data plot displays one or two of the provided column annotations
+(from the `colData` slot). Depending on the class of the selected annotations,
+the panel will show either a Hinton plot, a violin plot or a scatter plot.
+
 ![](XXX_RueAlbrecht_iSEE/colDataPlot.png)
 
 #### Row data plot
+Analogous to the column data plot, the row data plot displays one or two of the
+provided row annotations (from the `rowData` slot). Depending on the class of
+the selected annotations, the panel will show either a Hinton plot, a violin
+plot or a scatter plot.
+
 ![](XXX_RueAlbrecht_iSEE/rowDataPlot.png)
 
 #### Heatmap
+The heatmap shows the observed values for a subset of the features across the
+samples.
+
 ![](XXX_RueAlbrecht_iSEE/heatMap.png)
 
 #### Feature assay plot
+The feature assay plot displays the observed values for one feature across the
+samples.It is also possible to plot the observed values for two features, in a
+scatter plot.
+
 ![](XXX_RueAlbrecht_iSEE/featAssayPlot.png)
 
 #### Sample assay plot
+Analogous to the feature assay plot, the sample assay plot shows the observed
+values for all features, for one of the samples. It is also possible to plot the
+observed values for two samples, in a scatter plot.
+
 ![](XXX_RueAlbrecht_iSEE/sampAssayPlot.png)
 
 #### Row statistics table
+The row statistics table displays all information provided in the `rowData` slot
+of the `SummarizedExperiment` object.
+
 ![](XXX_RueAlbrecht_iSEE/rowStatTable.png)
 
 #### Column statistics table
+The column statistics table displays all information provided in the `colData`
+slot of the `SummarizedExperiment` object.
+
 ![](XXX_RueAlbrecht_iSEE/colStatTable.png)
+
+#### 'Data parameters' collapsible box
+Each plot panel type has a `Data parameters` collapsible box. This box will have
+somewhat different content for the different panel types, but in all cases lets
+us control what is displayed in the plot.
+
+![](XXX_RueAlbrecht_iSEE/colDataPlotDataParams.png)
+
+#### 'Visual parameters' collapsible box
+While the `Data parameters` collapsible box lets us control _what_ is displayed
+in the plot, the `Visual parameters` box lets us control _how_ it is displayed.
+Here, we can change the size, shape, opacity and color of the points, facet the
+plot by any provided categorical annotation, subsample points for increased
+speed of plot rendering and control how legends are displayed.
+
+![](XXX_RueAlbrecht_iSEE/colDataPlotVisualParams.png)
+
+#### 'Selection parameters' collapsible box
+Using the controls in the `Selection parameters` collapsible box, we can
+transfer selections of points (features or samples) between panels. We will
+discuss point transmission in more detail later in the workshop.
+
+![](XXX_RueAlbrecht_iSEE/redDimPlotSelectionParams.png)
 
 <!-- Mention all panel types -->
 <!-- Show how to change what is plotted, faceting, changing appearance/color -->
