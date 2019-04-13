@@ -327,7 +327,9 @@ below; however, `iSEE` will work seamlessly for objects of any class extending
 In addition, some panels, such as the `Reduced dimension plot`, are only
 available for objects that contain a `reducedDim` slot (in particular,
 `SingleCellExperiment` objects); the basic `SummarizedExperiment` class does not
-contain this slow.
+contain this slot. We will refer to the rows of the `SummarizedExperiment`
+object as 'features' (these can be genes, transcripts, regions, etc) and to the
+columns as 'samples' (which, in our example data set, are single cells).
 
 ### The user interface
 The `iSEE` user interface consists of a numbr of panels, each displaying the
@@ -336,7 +338,10 @@ are eight standard panel types; six plot panels and two table panels, as shown
 in the figure below. By default, one panel of each type is included. However,
 the user is free to rearrange, resize, remove or add panels freely, as will be
 described in a later section. Below, we provide a brief overview of each panel
-type.
+type. In addition to these types, the user can create custom panels (both plots
+and tables), which will be discussed later in the workshop.
+
+<!-- This is perhaps not very pedagogical - the app will not look like the one below if it is just opened with the object created above. But it's nice to show the capabilities of the panels too, not just the default settings --> 
 
 ![](XXX_RueAlbrecht_iSEE/iSEEinterface.png)
 
@@ -350,7 +355,8 @@ that this slot is not defined for the base `SummarizedExperiment` class.
 #### Column data plot
 The column data plot displays one or two of the provided column annotations
 (from the `colData` slot). Depending on the class of the selected annotations,
-the panel will show either a Hinton diagram, a violin plot or a scatter plot.
+the panel will show either a Hinton diagram [@Hinton1991-hintondiagram; @Bremner1994-hintonplots], a
+violin plot or a scatter plot.
 
 ![](XXX_RueAlbrecht_iSEE/colDataPlot.png)
 
@@ -397,7 +403,7 @@ slot of the `SummarizedExperiment` object.
 #### 'Data parameters' collapsible box
 Each plot panel type has a `Data parameters` collapsible box. This box will have
 somewhat different content for the different panel types, but in all cases lets
-us control what is displayed in the plot.
+the user control what is displayed in the plot.
 
 ![](XXX_RueAlbrecht_iSEE/colDataPlotDataParams.png)
 
@@ -418,7 +424,7 @@ discuss point transmission in more detail later in the workshop.
 ![](XXX_RueAlbrecht_iSEE/redDimPlotSelectionParams.png)
 
 #### Additional controls
-The top-left corner of the iSEE application provides additional controls for
+The top-right corner of the iSEE application provides additional controls for
 reproducibility, configuration and help. Each of these will be discussed in more
 detail later in the workflow.
 
@@ -431,15 +437,55 @@ detail later in the workflow.
 - Additional info:
 <img width="22%" src="XXX_RueAlbrecht_iSEE/additionalInfo.png"/>
 
-
-<!-- Mention all panel types -->
 <!-- Show how to change what is plotted, faceting, changing appearance/color -->
 <!-- Transmit selections -->
 <!-- Subsampling --> 
 
 ### Configuration of the app interface
+As mentioned above, by default an `iSEE` instance displays one panel of each of
+the standard types. However, in some cases we want to have multiple panels of
+the same type, and/or exclude some panel types. In order to accommodate such
+situations, the uesr can add, remove, change the order of and resize all panels
+via the `Panel organization` menu in the top-right corner. Using your open
+`iSEE` instance, click on this menu and try to add and remove panels, and resize
+the existing ones. Note that the total width of a row in the interface is 12
+units, and when the total width of the panels in a row exceeds 12, the last of
+them will be moved to a new row.
+
+Once a suitable panel configuration has be achieved, we want to be able to start
+the application in this configuration, to avoid the need to manually organize
+the panels each time the app is opened. This can be achieved by exporting the
+current panel settings. To do this, click on the wrench icon in the top-right
+corner, and select 'Display panel settings'. Scroll to the end of the code in
+the popup window and copy the definition of the `initialPanels` variable. For
+example:
+
+```{r}
+initialPanels <- DataFrame(
+    Name=c("Reduced dimension plot 1", "Column data plot 1", 
+           "Row data plot 1", "Heat map 1", 
+           "Feature assay plot 1", "Sample assay plot 1", 
+           "Row statistics table 1", "Column statistics table 1"
+        ),
+    Width=c(3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L),
+    Height=c(460L, 460L, 460L, 460L, 460L, 460L, 460L, 460L)
+)
+```
+
+Next, close the application, run the code that you just copied in your R
+session, and relaunch the application, now with the additional argument
+`initialPanels` set:
+
+```{r}
+if (interactive()) {
+    iSEE(sce, initialPanels = initialPanels)
+}
+```
+
+Notice how the panel configuration at startup is now identical to the one you
+saw when you displayed the panel settings.
+
 <!-- Here we could mention the cytometry data, maybe also the 'gating' mode -->
-<!-- Interactive modification of panel order/size -->
 <!-- Also related to sharing and communication: show how to save the configuration of panels, for next run (with quick startup) or for deployment -->
 
 ### Custom panels
