@@ -319,13 +319,25 @@ object.
 <!-- Talk a bit about the usefulness of visualization. -->
 This section provides an overview of the graphical interface of `iSEE`
 applications. To follow along, make sure that you have launched an `iSEE`
-instance as described in the code block at the end of the last section.
+instance as described in the code block at the end of the previous section.
 
 Note that for simplicity, we will typically refer to a `SummarizedExperiment`
 below; however, `iSEE` will work seamlessly for objects of any class extending
 `SummarizedExperiment` as well (e.g., `SingleCellExperiment`, `DESeqDataSet`).
+In addition, some panels, such as the `Reduced dimension plot`, are only
+available for objects that contain a `reducedDim` slot (in particular,
+`SingleCellExperiment` objects); the basic `SummarizedExperiment` class does not
+contain this slow.
 
 ### The user interface
+The `iSEE` user interface consists of a numbr of panels, each displaying the
+data provided in the `SummarizedExperiment` from a specific perspective. There
+are eight standard panel types; six plot panels and two table panels, as shown
+in the figure below. By default, one panel of each type is included. However,
+the user is free to rearrange, resize, remove or add panels freely, as will be
+described in a later section. Below, we provide a brief overview of each panel
+type.
+
 ![](XXX_RueAlbrecht_iSEE/iSEEinterface.png)
 
 #### Reduced dimension plot
@@ -338,7 +350,7 @@ that this slot is not defined for the base `SummarizedExperiment` class.
 #### Column data plot
 The column data plot displays one or two of the provided column annotations
 (from the `colData` slot). Depending on the class of the selected annotations,
-the panel will show either a Hinton plot, a violin plot or a scatter plot.
+the panel will show either a Hinton diagram, a violin plot or a scatter plot.
 
 ![](XXX_RueAlbrecht_iSEE/colDataPlot.png)
 
