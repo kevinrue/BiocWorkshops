@@ -402,6 +402,10 @@ if (interactive()) {
 
 Notice how the panel configuration at startup is now identical to the one you saw when you displayed the panel settings.
 
+Now that we have an application consisting of a suitable collection of panels
+for our data set, we'll explore the collapsible boxes below each plot, which
+lets us control their appearance. 
+
 <!-- Here we could mention the cytometry data, maybe also the 'gating' mode -->
 <!-- Also related to sharing and communication: show how to save the configuration of panels, for next run (with quick startup) or for deployment -->
 
