@@ -80,9 +80,10 @@ data sets, and fuel the discussion with more questions about specific use cases.
 1. _iSEE_ : https://bioconductor.org/packages/iSEE
 2. _SummarizedExperiment_: https://bioconductor.org/packages/SummarizedExperiment
 3. _SingleCellExperiment_: https://bioconductor.org/packages/SingleCellExperiment
-4. _scater_: https://bioconductor.org/packages/scater
-5. _scran_: https://bioconductor.org/packages/scran
-6. _TENxPBMCData_: https://bioconductor.org/packages/TENxPBMCData
+4. _TENxPBMCData_: https://bioconductor.org/packages/TENxPBMCData
+5. _scater_: https://bioconductor.org/packages/scater
+6. _scran_: https://bioconductor.org/packages/scran
+7. _BiocSingular_: https://bioconductor.org/packages/BiocSingular
 
 ### Time outline
 
