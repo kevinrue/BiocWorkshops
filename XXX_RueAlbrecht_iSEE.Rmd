@@ -142,11 +142,10 @@ In particular, this summary view indicates that the following pieces of informat
 
 - An assay matrix named `"counts"`
 - Row names (i.e. genes) are Ensembl gene identifiers
-- Row metadata include the official gene symbol, and the gene symbol used by the
+- Row metadata include for each gene the official gene symbol, and the gene symbol used by the
 10x CellRanger quantification pipeline
 - Column names (i.e., cells) are not initialized and left to `NULL`
-- Column metadata include, among others, the cell barcode (`"Barcode"`) and the
-donor identifier (`"Individual"`).
+- Column metadata include diverse information for each cell, including the cell barcode (`"Barcode"`) and the donor identifier (`"Individual"`).
 
 Note that a `SingleCellExperiment` object (or, more generally, any `SummarizedExperiment` object) like this one already contains sufficient information to launch an interactive application instance to visualize the available data and metadata, using the `iSEE()` function.
 
