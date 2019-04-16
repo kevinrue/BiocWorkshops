@@ -148,8 +148,6 @@ In particular, this summary view indicates that the following pieces of informat
 - Column metadata include, among others, the cell barcode (`"Barcode"`) and the
 donor identifier (`"Individual"`).
 
-<!-- Do we want to open iSEE already here? If so, we should probably go through the panels etc already at this stage, otherwise it may become a bit confusing -->
-
 Note that a `SingleCellExperiment` object (or, more generally, any `SummarizedExperiment` object) like this one already contains sufficient information to launch an interactive application instance to visualize the available data and metadata, using the `iSEE()` function.
 
 For the purpose of this workshop, we will first apply some preprocessing to the `SingleCellExperiment` object, in order to populate it with more information that can be visualized with `iSEE`.
@@ -259,6 +257,9 @@ For example, the `r Biocpkg("DropletUtils")` package can read quantifications fr
 
 This section provides an overview of the graphical interface of `iSEE` applications.
 To follow along, make sure that you have launched an `iSEE` instance as described in the code block at the end of the previous section.
+Note that by default, the panels will not look exactly like the ones shown in the screen shots below. 
+For example, the points will not yet be colored, and some panels will display different annotation variables than those chosen by default. 
+In the later parts of this workshop, we will show how to modify the content of the panels and how they are displayed. 
 
 Note that for simplicity, we will typically refer to a `SummarizedExperiment` below; however, `iSEE` will work seamlessly for objects of any class extending `SummarizedExperiment` as well (e.g., `SingleCellExperiment`, `DESeqDataSet`).
 In addition, some panels, such as the `Reduced dimension plot`, are only available for objects that contain a `reducedDim` slot (in particular, `SingleCellExperiment` objects); the basic `SummarizedExperiment` class does not contain this slot.
@@ -273,7 +274,7 @@ However, the user is free to rearrange, resize, remove or add panels freely, as 
 Below, we provide a brief overview of each panel type.
 In addition to these types, the user can create custom panels (both plots and tables), which will be discussed later in the workshop.
 
-<!-- This is perhaps not very pedagogical - the app will not look like the one below if it is just opened with the object created above. But it's nice to show the capabilities of the panels too, not just the default settings --> 
+<!-- This is perhaps not very pedagogical - the app will not look like the one below if it is just opened with the object created above. But it's nice to show the capabilities of the panels too, not just the default settings. I added a few sentences to the introduction of this section to try to address this. --> 
 
 ![](XXX_RueAlbrecht_iSEE/iSEEinterface.png)
 
@@ -371,9 +372,13 @@ As mentioned above, by default an `iSEE` instance displays one panel of each of 
 However, in some cases we want to have multiple panels of the same type, and/or exclude some panel types.
 In order to accommodate such situations, the user can add, remove, change the order of and resize all panels via the `Panel organization` menu in the top-right corner.
 Using your open `iSEE` instance, click on this menu and try to add and remove panels, and resize the existing ones.
+By clicking in the selectize box listing all current panels, you will be presented with a drop-down menu from which you can choose additional panels to add. 
+Similarly, panels can be removed by clicking on the little `x` corresponding to the panel in this box.
+Each panel can be individually resized by changing the width and height. 
+Remember to click on `Apply settings` to apply the changes you have made to the interface. 
 Note that the total width of a row in the interface is 12 units, and when the total width of the panels in a row exceeds 12, the last of them will be moved to a new row.
 
-Once a suitable panel configuration has be achieved, we want to start the application in this configuration, to avoid the need to manually organize the panels each time the app is opened.
+Once a satisfactory panel configuration has be achieved, we want to be able to start the application in this configuration, to avoid the need to manually organize the panels each time the app is opened.
 This can be achieved by exporting the current panel settings.
 To do this, click on the wrench icon in the top-right corner, and select 'Display panel settings'.
 Scroll to the end of the code in the popup window and copy the definition of the `initialPanels` variable.
@@ -400,14 +405,62 @@ if (interactive()) {
 }
 ```
 
-Notice how the panel configuration at startup is now identical to the one you saw when you displayed the panel settings.
+Notice how the panel configuration at startup is now identical to the one you saw just before displaying the panel settings.
 
-Now that we have an application consisting of a suitable collection of panels
-for our data set, we'll explore the collapsible boxes below each plot, which
-lets us control their appearance. 
+Now that we have an application consisting of a suitable collection of panels for our data set, we'll explore the collapsible boxes below each plot, which lets us control their appearance. 
 
-<!-- Here we could mention the cytometry data, maybe also the 'gating' mode -->
-<!-- Also related to sharing and communication: show how to save the configuration of panels, for next run (with quick startup) or for deployment -->
+#### Changing the displayed reduced dimension representation
+By default, each Reduced dimension plot displays the first provided reduced dimension representation (contained in the `reducedDim` slot of the `SingleCellExperiment` object). 
+If additional reduced dimension representations are included, the one chosen for the display can be changed in the `Data parameters` collapsible box in the Reduced dimension plot panel. 
+Use this to show the t-SNE representation instead of the PCA. 
+
+#### Coloring points by row/column annotation
+With default settings, all points are colored black. 
+However, any provided row (for features) or column (for samples) annotation can be used to color the points. 
+To exemplify this, open the `Visual parameters` collapsible box in the Reduced dimension plot panel, and set `Color by:` to `Column data`. 
+Scroll through the dropdown menu that appears to see all the sample annotations that can be used to color the points. 
+All these values are taken from the `colData` slot of the provided object. 
+First, let's color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step above.
+Note how a discrete color scheme is selected, since the variable is categorical. 
+Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`). 
+Notice how the color scale is now continuous. 
+`iSEE` allows precise control over the color schemes used. 
+More information about this can be found in the `ExperimentColorMap` vignette. 
+
+#### Coloring points by feature value
+In addition to coloring cells by the provided annotations as above, we can also color them by the observed values for a given feature (as provided in one of the `assay`s).
+To do this, set the `Color by:` to `Feature name` in the Reduced dimension plot, and select one of the genes from the dropdown menu. 
+You can search for a gene of interest by typing in the dropdown box.
+You can also choose which assay should be used to extract the values to color according to. 
+
+#### Highlighting a single point
+The `Color by: Sample name` option in the Reduced dimension plot can be used to highlight a single sample. 
+
+#### Changing the shape and opacity of points
+By default, only the `Color` options are displayed in the `Visual parameters` box. 
+Additional controls can be shown by clicking the check boxes for `Shape`, `Points`, `Facets` and `Other`. 
+The `Shape` and `Points` panels let you set the shape and size of points according to provided annotations (or to resize all points), and to set the point opacity. 
+Here, you can also downsample points to increase the speed of rendering, which can be useful for data sets with large numbers of points. 
+
+#### Changing the displayed metadata
+The Column data plot and Row data plot are used to display the information in the `colData` and `rowData` slots of the `SummarizedExperiment` object. 
+These panels can display either one or two annotations. 
+By default, the first annotation in the respective meta data table is selected. 
+The choice of plot depends on the type of displayed annotation(s). 
+When all chosen annotations are categorical, `iSEE` displays a Hinton plot, consisting of rectangles whose area is proportional to the number of observations they represent. 
+For a single continuous variable, or one continuous and one categorical variable, `iSEE` uses violin plot(s). 
+Finally, if two continuous variables are chosen, `iSEE` will display a scatter plot. 
+As a side note, categorical variables with "too many" unique values (which is typically the case for, e.g., sample IDs) will be represented as numeric variables, by replacing each value by an index. 
+The limit for what is considered "too many" unique values can be set using `options(iSEE.maxlevels = 30)`. 
+Explore the different types of plots provided in the Column data or Row data plot panels by selecting different annotations as the `Column of interest (Y-axis)` and/or setting `X-axis:` to `Column data` and selecting an additional annotation.
+
+#### Displaying the expression distribution of a single gene
+
+### Linking panels and transmitting point selections
+<!-- Examine panel chart -->
+
+### Saving and restoring the state of the application
+<!-- Copy the entire 'Display panel settings' code, close and reopen app -->
 
 ### Custom panels
 
