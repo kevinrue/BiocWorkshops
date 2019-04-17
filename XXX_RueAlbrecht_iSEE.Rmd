@@ -155,20 +155,20 @@ The steps below roughly follow those outlined in the `simpleSingleCell` [Biocond
 We start by adding column names to the object, and use gene symbols instead of Ensembl IDs as row names.
 In the case where multiple Ensembl identifiers correspond to the same gene symbol, the `scater::uniquifyFeatureNames` function will concatenate the Ensembl ID and the gene symbol in order to generate unique feature names.
 
-```{r}
+```{r, message=FALSE}
+library(scater)
 colnames(sce) <- paste0("Cell", seq_len(ncol(sce)))
 rownames(sce) <- scater::uniquifyFeatureNames(
     ID = rowData(sce)$ENSEMBL_ID,
     names = rowData(sce)$Symbol_TENx
 )
-sce
+head(rownames(sce))
 ```
 
 Next, we use the `r Biocpkg("scater")` package to calculate gene- and cell-level quality metrics.
 These metrics will be added as columns to the `rowData` and `colData` slots of the `SingleCellExperiment` object, respectively.
 
 ```{r, message = FALSE}
-library(scater)
 MT <- rownames(sce)[grep("^MT-", rownames(sce))]
 sce <- scater::calculateQCMetrics(object = sce, 
                                   feature_controls = list(MT = MT))
@@ -183,7 +183,7 @@ We filter out a few cells with a large fraction of the counts coming from mitoch
 
 Next, we calculate size factors and normalized and log-transformed expression values, using the `r Biocpkg("scran")` and `r Biocpkg("scater")` packages.
 
-```{r, message = FALSE}
+```{r, message=FALSE}
 library(scran)
 library(BiocSingular)
 sce <- scran::computeSumFactors(sce, min.mean = 0.1)
