@@ -176,6 +176,7 @@ sce
 ```
 
 We filter out a few cells with a large fraction of the counts coming from mitochondrial genes, since these may be damaged cells.
+Notice the reduced number of columns in the dataset below.
 
 ```{r}
 (sce <- sce[, sce$pct_counts_MT < 5])
