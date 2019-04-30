@@ -79,8 +79,8 @@ There is also scope for participants to apply `r Biocpkg("iSEE")` to their own d
 |-----------------------------------------------|------|
 | **Lecture**: Overview of package and concepts | 15m  |
 | **Live demo**: the user interface             | 15m  |
-| **Lab**: Configuring the app interface        | 20m  |
 | **Lab**: A single-cell RNA-seq workflow       | 20m  |
+| **Lab**: Configuring the app interface        | 20m  |
 | **Lab**: Custom panels                        | 20m  |
 | Additional questions                          | 15m  |
 
@@ -528,4 +528,4 @@ The limit for what is considered "too many" unique values can be set using `opti
 sessionInfo()
 ```
 
-# References
+## References
