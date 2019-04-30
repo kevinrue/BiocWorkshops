@@ -322,7 +322,7 @@ It is also possible to plot the observed values for two features, in a scatter p
 
 #### Sample assay plot {#sampassayplot}
 
-Analogous to the feature assay plot, the sample assay plot shows the observed values for all features, for one of the samples.
+Analogous to the [feature assay plot](#featassayplot) above, the sample assay plot shows the observed values for all features, for one of the samples.
 It is also possible to plot the observed values for two samples, in a scatter plot.
 
 ![](XXX_RueAlbrecht_iSEE/sampAssayPlot.png)
@@ -335,7 +335,7 @@ The row statistics table displays all information provided in the `rowData` slot
 
 #### Column statistics table {#colstattable}
 
-The column statistics table displays all information provided in the `colData` slot of the `SummarizedExperiment` object.
+Analogous to the [row statistics table](#rowstattable) above, the column statistics table displays all information provided in the `colData` slot of the `SummarizedExperiment` object.
 
 ![](XXX_RueAlbrecht_iSEE/colStatTable.png)
 
