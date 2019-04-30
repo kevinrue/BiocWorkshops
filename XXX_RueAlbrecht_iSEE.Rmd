@@ -399,7 +399,7 @@ When the width of a panel is greater than the space available, the panel is move
 It can take a great amount of time to achieve a satisfactory panel configuration.
 To avoid the need to manually organize the panels each time the app is opened, `iSEE` offers the possibility to export the current panel settings.
 
-**Action:** click on the wrench icon in the top-right corner, and select 'Display panel settings'.
+**Action:** click on the wrench icon (<i class="fa fa-wrench"></i>) in the top-right corner, and select 'Display panel settings'.
 Scroll to the end of the code in the popup window and copy the definition of the `initialPanels` variable.
 
 For example:
