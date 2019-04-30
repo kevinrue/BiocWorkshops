@@ -273,11 +273,11 @@ In this workshop, we refer to the rows of the `SummarizedExperiment` object as '
 The `iSEE` user interface consists of a number of panels, each displaying the data provided in the `SummarizedExperiment` from a specific perspective.
 There are 8 standard panel types; 6 plot panels and 2 table panels, all showcased in the figure below.
 In the default configuration, one panel of each type is included when launching the `iSEE` user interface.
-However, users are free to rearrange, resize, remove or add panels freely, as described in a later section.
+However, users are free to rearrange, resize, remove or add panels freely, as described in a [later section](#configuration-ui).
 We provide a brief overview of each panel type in the following subsections.
 
 In addition to the 8 standard panel types, user can create custom panels (both plots and tables).
-The creation and configuration of custom panels is discussed later, in a dedicated section of the workshop.
+The creation and configuration of custom panels is discussed later, in a [dedicated section](#custom-panels) of this workshop.
 
 <!-- This is perhaps not very pedagogical - the app will not look like the one below if it is just opened with the object created above.
 But it's nice to show the capabilities of the panels too, not just the default settings.
@@ -358,7 +358,7 @@ This collapsible box contains the controls to change the size, shape, opacity an
 
 The `Selection parameters` collapsible box provides controls to transfer selections of points (features or samples) between panels.
 
-We discuss point transmission in more detail later in the workshop.
+We discuss point transmission in more detail [later in this workshop](#transmit-point-selections).
 
 <!-- TODO: Link "later" to the appropriate section when it exists -->
 
@@ -367,7 +367,7 @@ We discuss point transmission in more detail later in the workshop.
 #### Additional controls {#additional-controls}
 
 At the top-right corner of the iSEE application, users can find additional controls for reproducibility, configuration and help.
-Each of these is discussed in more detail later in the workflow.
+Each of these is discussed in more detail later in this workshop.
 
 |                    |                                                                     |
 |--------------------|:-------------------------------------------------------------------:|
@@ -486,33 +486,33 @@ The limit for what is considered "too many" unique values can be set using `opti
 
 **Action:** Explore the different types of plots provided in the Column data or Row data plot panels by selecting different annotations as the `Column of interest (Y-axis)` and/or setting `X-axis:` to `Column data` and selecting an additional annotation.
 
-#### Displaying the expression distribution of a single gene
+#### Displaying the expression distribution of a single gene {#display-single-gene}
 
-### Linking panels and transmitting point selections
+### Linking panels and transmitting point selections {#transmit-point-selections}
 
 <!-- Examine panel chart -->
 
-### Saving and restoring the state of the application
+### Saving and restoring the state of the application {#save-and-restore-user-interface}
 
 <!-- Copy the entire 'Display panel settings' code, close and reopen app -->
 
-### Custom panels
+### Custom panels {#custom-panels}
 
 <!-- Here we could mention the custom coverage plot, and link to bulk RNA-seq data -->
 <!-- Multiple selections -> DE -->
 <!-- If time is enough: Kev's comparison of reduced dimensionality could be also nice - just to show, maybe, and then link to the iSEE_custom repo -->
 
-### Reproducibility
+### Reproducibility {#reproducibility}
 
 <!-- Code export -->
 <!-- Config export! -->
 
-### Sharing and communication
+### Sharing and communication {#sharing-tours}
 
 <!-- Tours -->
 <!-- If there is enough time: draft a mini tour live (challenging: anchors might be tricky - rewarding: once it works, it is surely a OOOH thing) -->
 
-### Resources
+### Resources {#more-resources}
 
 * Bioconductor landing page: [https://bioconductor.org/packages/iSEE/](https://bioconductor.org/packages/iSEE/)
 * Publication (F1000Research, 2018): [https://f1000research.com/articles/7-741/v1](https://f1000research.com/articles/7-741/v1)
