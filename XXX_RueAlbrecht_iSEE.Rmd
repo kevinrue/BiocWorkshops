@@ -433,36 +433,37 @@ Now that we have an application consisting of a suitable collection of panels fo
 #### Displaying a different reduced dimension representation {#choose-reduced-dimension}
 
 By default, each _Reduced dimension plot_ displays the first reduced dimension representation provided (contained in the `reducedDim` slot of the `SingleCellExperiment` object). 
-If additional reduced dimension representations are included, the one chosen for the display can be changed in the `Data parameters` collapsible box in the _Reduced dimension plot_ panel. 
+If additional reduced dimension representations are included, the one chosen for the display can be changed in the `Data parameters` collapsible box in the _Reduced dimension plot_ panel.
 
-**Action:** Use this control to show the t-SNE representation instead of the PCA. 
+**Action:** Use this control to show the t-SNE representation instead of the PCA.
 
 #### Coloring points by row/column annotation {#color-by-annotation}
 
-With default settings, all points are colored black. 
-However, any provided row (for features) or column (for samples) annotation can be used to color the points. 
+With default settings, all points are colored black.
+However, any provided row (for features) or column (for samples) annotation can be used to color the points.
 
-**Action:** To demonstrate this, open the `Visual parameters` collapsible box in the _Reduced dimension plot_ panel, and set `Color by:` to `Column data`. 
-Scroll through the dropdown menu that appears to see all the sample annotations that can be used to color the points. 
-All these values are taken from the `colData` slot of the provided object. 
+**Action:** To demonstrate this, open the `Visual parameters` collapsible box in the _Reduced dimension plot_ panel, and set `Color by:` to `Column data`.
+Scroll through the dropdown menu that appears to see all the sample annotations that can be used to color the points.
+
+All these values are taken from the `colData` slot of the provided object.
 First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
-Note how a discrete color scheme is selected, since the variable is categorical. 
-Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`). 
-Notice how the color scale is now continuous. 
-`iSEE` allows precise control over the color schemes used. 
-More information about this can be found in the `ExperimentColorMap` vignette. 
+Note how a discrete color scheme is selected, since the variable is categorical.
+Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
+Notice how the color scale is now continuous.
+`iSEE` allows precise control over the color schemes used.
+More information about this can be found in the `ExperimentColorMap` vignette.
 
 #### Coloring points by feature value {#color-by-feature}
 
 In addition to coloring cells by the provided annotations as above, we can also color them by the observed values for a given feature (as provided in one of the `assays`).
 
-**Action:** Set `Color by:` to `Feature name` in the _Reduced dimension plot_, and select one of the genes from the dropdown menu. 
+**Action:** Set `Color by:` to `Feature name` in the _Reduced dimension plot_, and select one of the genes from the dropdown menu.
 You can search for a gene of interest by typing in the dropdown box.
-You can also choose which assay should be used to extract the values to color according to. 
+You can also choose which assay should be used to extract the values to color according to.
 
 #### Highlighting a single point {#highlight}
 
-The `Color by: Sample name` option in the _Reduced dimension plot_ can also be used to highlight a single sample. 
+The `Color by: Sample name` option in the _Reduced dimension plot_ can also be used to highlight a single sample.
 
 #### Changing the shape and opacity of points {#change-shape-opacity}
 
@@ -483,8 +484,8 @@ The plot layout adapts automatically to the type of annotation(s) displayed.
 * For a single continuous variable, or one continuous and one categorical variable, `iSEE` uses violin plot(s).
 * If two continuous variables are chosen, `iSEE` displays a scatter plot.
 
-As a side note, categorical variables with "too many" unique values (which is typically the case for sample IDs, for instance) are represented as numeric variables, by replacing each value by an index. 
-The limit for what is considered "too many" unique values can be set using `options(iSEE.maxlevels = 30)`. 
+As a side note, categorical variables with "too many" unique values (which is typically the case for sample IDs, for instance) are represented as numeric variables, by replacing each value by an index.
+The limit for what is considered "too many" unique values can be set using `options(iSEE.maxlevels = 30)`.
 
 **Action:** Explore the different types of plots provided in the Column data or Row data plot panels by selecting different annotations as the `Column of interest (Y-axis)` and/or setting `X-axis:` to `Column data` and selecting an additional annotation.
 
