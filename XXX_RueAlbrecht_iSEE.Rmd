@@ -447,13 +447,9 @@ Scroll through the dropdown menu that appears to see all the sample annotations 
 
 All these values are taken from the `colData` slot of the provided object.
 
-**Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
+**Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data). Note how a discrete color scheme is selected, since the variable is categorical.
 
-Note how a discrete color scheme is selected, since the variable is categorical.
-
-**Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
-
-Notice how the color scale is now continuous.
+**Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`). Notice how the color scale is now continuous.
 
 `iSEE` allows precise control over the color schemes used.
 More information about this can be found in the `r BiocStyle::Biocpkg("iSEE", "ecm.html", "ExperimentColorMap")` vignette.
