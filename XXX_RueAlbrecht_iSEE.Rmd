@@ -466,6 +466,8 @@ You can also choose which assay should be used to extract the values to color ac
 
 The `Color by: Sample name` option in the _Reduced dimension plot_ can also be used to highlight a single sample.
 
+**Action:** Set `Color by:` to `Sample name` in the _Reduced dimension plot_, and use the dropdown menu underneath to change the highlighted cell.
+
 #### Changing the shape and opacity of points {#change-shape-opacity}
 
 By default, only the `Color` options are displayed in the `Visual parameters` box.
