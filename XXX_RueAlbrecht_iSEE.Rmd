@@ -469,6 +469,24 @@ All these values are taken from the `colData` slot of the provided object.
 
 **Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`). Notice how the color scale is now continuous.
 
+The instance can be preconfigured to control the coloring of data points.
+
+**Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#choose-reduced-dimension).
+
+```{r}
+redDimArgs$ColorBy <- "Column data"
+redDimArgs[1, "ColorByColData"] <- "log10_total_features_by_counts"
+redDimArgs[2, "ColorByColData"] <- "Cluster"
+initialPanels <- DataFrame(
+    Name=c("Reduced dimension plot 1", "Reduced dimension plot 2"),
+    Width=c(4L, 4L),
+    Height=c(400, 400)
+)
+if (interactive()) {
+    iSEE(sce, redDimArgs = redDimArgs, initialPanels = initialPanels)
+}
+```
+
 `r Biocpkg("iSEE")` allows precise control over the color schemes used.
 More information about this can be found in the `r Biocpkg("iSEE", "ecm.html", "ExperimentColorMap")` vignette.
 
