@@ -446,12 +446,17 @@ However, any provided row (for features) or column (for samples) annotation can 
 Scroll through the dropdown menu that appears to see all the sample annotations that can be used to color the points.
 
 All these values are taken from the `colData` slot of the provided object.
-First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
+
+**Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
+
 Note how a discrete color scheme is selected, since the variable is categorical.
-Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
+
+**Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
+
 Notice how the color scale is now continuous.
+
 `iSEE` allows precise control over the color schemes used.
-More information about this can be found in the `ExperimentColorMap` vignette.
+More information about this can be found in the `r BiocStyle::Biocpkg("iSEE", "ecm.html", "ExperimentColorMap")` vignette.
 
 #### Coloring points by feature value {#color-by-feature}
 
