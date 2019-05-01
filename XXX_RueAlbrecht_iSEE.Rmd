@@ -455,6 +455,8 @@ if (interactive()) {
 }
 ```
 
+![](XXX_RueAlbrecht_iSEE/ReducedDimensionType.png)
+
 #### Coloring points by row/column annotation {#color-by-annotation}
 
 With default settings, all points are colored black.
@@ -462,19 +464,21 @@ However, any provided row (for features) or column (for samples) annotation can 
 
 **Action:** To demonstrate this, open the `Visual parameters` collapsible box in the _Reduced dimension plot_ panel, and set `Color by:` to `Column data`.
 Scroll through the dropdown menu that appears to see all the sample annotations that can be used to color the points.
-
 All these values are taken from the `colData` slot of the provided object.
 
-**Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data). Note how a discrete color scheme is selected, since the variable is categorical.
+**Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
+Note how a discrete color scheme is selected, since the variable is categorical.
 
-**Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`). Notice how the color scale is now continuous.
+**Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
+Notice how the color scale is now continuous.
 
-The instance can be preconfigured to control the coloring of data points.
+The instance can be preconfigured to control the coloring of data points, to display the same result on startup.
 
 **Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#choose-reduced-dimension).
 
+
 ```{r}
-redDimArgs$ColorBy <- "Column data"
+redDimArgs[["ColorBy"]] <- "Column data"
 redDimArgs[1, "ColorByColData"] <- "log10_total_features_by_counts"
 redDimArgs[2, "ColorByColData"] <- "Cluster"
 initialPanels <- DataFrame(
@@ -487,6 +491,8 @@ if (interactive()) {
 }
 ```
 
+![](XXX_RueAlbrecht_iSEE/ColorByColData.png)
+
 `r Biocpkg("iSEE")` allows precise control over the color schemes used.
 More information about this can be found in the `r Biocpkg("iSEE", "ecm.html", "ExperimentColorMap")` vignette.
 
@@ -497,6 +503,32 @@ In addition to coloring cells by the provided annotations as above, we can also 
 **Action:** Set `Color by:` to `Feature name` in the _Reduced dimension plot_, and select one of the genes from the dropdown menu.
 You can search for a gene of interest by typing in the dropdown box.
 You can also choose which assay should be used to extract the values to color according to.
+
+Again, the same result can be achieved by preconfiguring the application as follows.
+
+**Action:** Run the following block of code to set up 3 panels, all displaying the t-SNE representation.
+In the first panel, we color cells by their `Cluster` label.
+In the second and third panel, we display _CD79A_ and _CD74_, a combination of gene markers typically observed in B cells.
+
+```{r}
+redDimArgs <- redDimPlotDefaults(sce, 3)
+redDimArgs[["Type"]] <- "TSNE"
+redDimArgs[1, "ColorBy"] <- "Column data"
+redDimArgs[1, "ColorByColData"] <- "Cluster"
+redDimArgs[2:3, "ColorBy"] <- "Feature name"
+redDimArgs[2, "ColorByFeatName"] <- "CD79A"
+redDimArgs[3, "ColorByFeatName"] <- "CD74"
+initialPanels <- DataFrame(
+    Name=paste("Reduced dimension plot", 1:3),
+    Width=rep(4L, 3L),
+    Height=rep(400, 3L)
+)
+if (interactive()) {
+    iSEE(sce, redDimArgs = redDimArgs, initialPanels = initialPanels)
+}
+```
+
+![](XXX_RueAlbrecht_iSEE/ColorByFeature.png)
 
 #### Highlighting a single point {#highlight}
 
