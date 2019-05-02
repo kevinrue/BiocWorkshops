@@ -536,12 +536,60 @@ The `Color by: Sample name` option in the _Reduced dimension plot_ can also be u
 
 **Action:** Set `Color by:` to `Sample name` in the _Reduced dimension plot_, and use the dropdown menu underneath to change the highlighted cell.
 
-#### Changing the shape and opacity of points {#change-shape-opacity}
+Again, the same result can be achieved by preconfiguring the application as follows.
+Note that it is more robust to provide the numerical index of the sample in the `sce` object (see the `match` statements in the code chunk below).
+
+**Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
+We also open the _Visual parameters_ collapsible box to highlight the preconfigured options.
+
+```{r}
+redDimArgs[2:3, "ColorBy"] <- "Sample name"
+redDimArgs[2, "ColorBySampName"] <- match("Cell2439", colnames(sce))
+redDimArgs[3, "ColorBySampName"] <- match("Cell673", colnames(sce))
+redDimArgs[["VisualBoxOpen"]] <- TRUE
+initialPanels <- DataFrame(
+    Name=paste("Reduced dimension plot", 1:3),
+    Width=rep(4L, 3L),
+    Height=rep(400, 3L)
+)
+if (interactive()) {
+    iSEE(sce, redDimArgs = redDimArgs, initialPanels = initialPanels)
+}
+```
+
+![](XXX_RueAlbrecht_iSEE/ColorBySample.png)
+
+#### Changing the size, shape and opacity of points {#change-shape-opacity}
 
 By default, only the `Color` options are displayed in the `Visual parameters` box.
 Additional controls can be shown by clicking the check boxes for `Shape`, `Points`, `Facets` and `Other`.
 The `Shape` and `Points` panels let you set the shape and size of points according to provided annotations (or to resize all points), and to set the point opacity.
 Here, you can also downsample points to increase the speed of rendering, which can be useful for data sets with large numbers of points.
+
+**Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
+Here, we reduce the point size and increase the transparency (i.e. reduced the alpha channel).
+We also apply a downsampling grid of 100 horizontal and vertical bins to the plot, where only a single data point is plotted (if any) for each bin.
+Finally, we display the `Shape` and `Points` options.
+
+```{r}
+redDimArgs[2:3, "PointSize"] <- 0.4
+redDimArgs[2:3, "PointAlpha"] <- 0.4
+redDimArgs[["VisualBoxOpen"]] <- TRUE
+redDimArgs[["Downsample"]] <- TRUE
+redDimArgs[["SampleRes"]] <- 200
+redDimArgs[["VisualChoices"]][[2]] <- list("Shape", "Points")
+redDimArgs[["VisualChoices"]][[3]] <- list("Shape", "Points")
+initialPanels <- DataFrame(
+    Name=paste("Reduced dimension plot", 1:3),
+    Width=rep(4L, 3L),
+    Height=rep(400, 3L)
+)
+if (interactive()) {
+    iSEE(sce, redDimArgs = redDimArgs, initialPanels = initialPanels)
+}
+```
+
+![](XXX_RueAlbrecht_iSEE/ConfigureVisualParameters.png)
 
 #### Changing the displayed metadata {#change-metadata-displayed}
 
@@ -559,6 +607,33 @@ As a side note, categorical variables with "too many" unique values (which is ty
 The limit for what is considered "too many" unique values can be set using `options(iSEE.maxlevels = 30)`.
 
 **Action:** Explore the different types of plots provided in the Column data or Row data plot panels by selecting different annotations as the `Column of interest (Y-axis)` and/or setting `X-axis:` to `Column data` and selecting an additional annotation.
+
+In the following code chunk we demonstrate the preconfiguration of an app instance that immediately displays two panels.
+
+**Action:** Run the following block of code to set up one _Column data plot_ and one _Row data plot_ panel.
+We set up the _Column data plot_ panel to immediately examine the proportion of counts assigned to mitochondrial features in each cluster.
+We set up the _Row data plot_ panel to examine the proportion of cells with detectable expression against the log-transformed total counts for each gene.
+
+```{r}
+colDataArgs <- colDataPlotDefaults(sce, 1)
+colDataArgs[1, "YAxis"] <- "pct_counts_MT"
+colDataArgs$XAxis <- "Column data"
+colDataArgs[1, "XAxisColData"] <- "Cluster"
+rowDataArgs <- rowDataPlotDefaults(sce, 1)
+rowDataArgs[1, "YAxis"] <- "n_cells_by_counts"
+rowDataArgs$XAxis <- "Row data"
+rowDataArgs[1, "XAxisRowData"] <- "log10_total_counts"
+initialPanels <- DataFrame(
+    Name=c("Column data plot 1", "Row data plot 1"),
+    Width=rep(4L, 2L),
+    Height=rep(400, 2L)
+)
+if (interactive()) {
+    iSEE(sce, colDataArgs = colDataArgs, rowDataArgs = rowDataArgs, initialPanels = initialPanels)
+}
+```
+
+![](XXX_RueAlbrecht_iSEE/ConfigureDataPlotPanels.png)
 
 #### Displaying the expression distribution of a single gene {#display-single-gene}
 
