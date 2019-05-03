@@ -37,7 +37,7 @@ The instructor-led live demo comprises three parts:
 2. Overview of the graphical user interface
 3. Instructions to preconfigure `r Biocpkg("iSEE")` apps
 
-The hands-on lab comprises three part:
+The hands-on lab comprises three parts:
 
 1. Inspection of single-cell RNA-seq data at various steps of a typical computational workflow, including quality control and dimensionality reduction
 2. Addition of custom panels to the user interface for advanced visualization.
@@ -206,7 +206,7 @@ top.dec <- dec[order(dec$bio, decreasing = TRUE), ]
 head(top.dec)
 ```
 
-Next, we apply principal components analysis (PCA) and t-distributed stochastic neighbor embedding (t-SNE) to generate low-dimensional representations of the cells in our data set.
+Next, we apply Principal Components Analysis (PCA) and t-distributed Stochastic Neighbor Embedding (t-SNE) to generate low-dimensional representations of the cells in our data set.
 These low-dimensional representations are added to the `reducedDim` slot of the `SingleCellExperiment` object.
 
 ```{r}
@@ -266,7 +266,7 @@ Later sections of this workshop demonstrate how to modify the content of the pan
 
 Note that for simplicity, we typically refer to a `SummarizedExperiment` in this workshop; however, `r Biocpkg("iSEE")` works seamlessly for objects of any class extending `SummarizedExperiment` as well (e.g., `SingleCellExperiment`, `DESeqDataSet`).
 That said, some types of panels -- such as the `Reduced dimension plot` -- are only available for objects that contain a `reducedDim` slot (in particular, `SingleCellExperiment` objects); the basic `SummarizedExperiment` class does not contain this slot.
-In this workshop, we refer to the rows of the `SummarizedExperiment` object as 'features' (these can be genes, transcripts, regions, etc) and to the columns as 'samples' (which, in our example data set, are single cells).
+In this workshop, we refer to the rows of the `SummarizedExperiment` object as 'features' (these can be genes, transcripts, genomic regions, etc) and to the columns as 'samples' (which, in our example data set, are single cells).
 
 ### The user interface {#user-interface}
 
@@ -329,7 +329,7 @@ It is also possible to plot the observed values for two samples, in a scatter pl
 
 #### Row statistics table {#rowstattable}
 
-The row statistics table displays all information provided in the `rowData` slot of the `SummarizedExperiment` object.
+The row statistics table displays all information provided in the `rowData` slot of the `SummarizedExperiment` object, leveraging the interactivity provided by the `r CRANpkg("DT")` package.
 
 ![](XXX_RueAlbrecht_iSEE/rowStatTable.png)
 
@@ -350,7 +350,7 @@ This box has different content for the each panel types, but in all cases it let
 
 In contrast to the `Data parameters` collapsible box that lets users control _what_ is displayed in the plot, the `Visual parameters` box lets users control _how_ the information is displayed.
 
-This collapsible box contains the controls to change the size, shape, opacity and color of the points, to facet the plot by any available categorical annotation, to subsample points for increased speed of plot rendering, and to control how legends are displayed.
+This collapsible box contains the controls to change the size, shape, opacity, and color of the points, to facet the plot by any available categorical annotation, to subsample points for increased speed of plot rendering, and to control how legends are displayed.
 
 ![](XXX_RueAlbrecht_iSEE/colDataPlotVisualParams.png)
 
@@ -366,7 +366,7 @@ We discuss point transmission in more detail [later in this workshop](#transmit-
 
 #### Additional controls {#additional-controls}
 
-At the top-right corner of the iSEE application, users can find additional controls for reproducibility, configuration and help.
+At the top-right corner of the iSEE application, users can find additional controls for reproducibility, configuration, and help.
 Each of these is discussed in more detail later in this workshop.
 
 |                    |                                                                     |                                        |
@@ -382,7 +382,7 @@ Each of these is discussed in more detail later in this workshop.
 
 ### Configuration of the app interface {#configuration-ui}
 
-As mentioned above, the default behaviour of the `iSEE()` function is to launch an instance of the user interface that displays one panel of each of the standard types.
+As mentioned above, the default behaviour of the `iSEE()` function is to launch an instance of the user interface that displays one panel of each of the standard types (provided the underlying data is available, e.g. for reduced dimension plots the `reducedDim` slot is required).
 However, in some cases it is desirable to have multiple panels of the same type, and/or exclude some panel types.
 
 In order to accommodate such situations, users can add, remove, change the order of and resize all panels via the `Panel organization` menu in the top-right corner.
@@ -567,7 +567,7 @@ The `Shape` and `Points` panels let you set the shape and size of points accordi
 Here, you can also downsample points to increase the speed of rendering, which can be useful for data sets with large numbers of points.
 
 **Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
-Here, we reduce the point size and increase the transparency (i.e. reduced the alpha channel).
+Here, we reduce the point size and increase the transparency (i.e. reduce the value for the alpha attribute).
 We also apply a downsampling grid of 100 horizontal and vertical bins to the plot, where only a single data point is plotted (if any) for each bin.
 Finally, we display the `Shape` and `Points` options.
 
