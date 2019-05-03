@@ -387,7 +387,7 @@ However, in some cases it is desirable to have multiple panels of the same type,
 
 In order to accommodate such situations, users can add, remove, change the order of and resize all panels via the `Panel organization` menu in the top-right corner.
 
-**Action:** Using your open `r Biocpkg("iSEE")` instance, open the `Organization` menu and click on the `Organize panels` button.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Using your open `r Biocpkg("iSEE")` instance, open the `Organization` menu and click on the `Organize panels` button.
 Try to add and remove panels, and resize the existing ones.
 Remember to click on `Apply settings` to apply the changes you have made to the interface. 
 
@@ -401,7 +401,7 @@ When the width of a panel is greater than the space available, the panel is move
 It can take a great amount of time to achieve a satisfactory panel configuration.
 To avoid the need to manually organize the panels each time the app is opened, `r Biocpkg("iSEE")` offers the possibility to export the current panel settings.
 
-**Action:** click on the wrench icon (<i class="fa fa-wrench"></i>) in the top-right corner, and select 'Display panel settings'.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** click on the wrench icon (<i class="fa fa-wrench"></i>) in the top-right corner, and select 'Display panel settings'.
 Scroll to the end of the code in the popup window and copy the definition of the `initialPanels` variable.
 
 For example:
@@ -418,7 +418,7 @@ initialPanels <- DataFrame(
 )
 ```
 
-**Action:** Close the application, run the code that you just copied in your _R_ session, and relaunch the application, now with the additional argument `initialPanels` set:
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Close the application, run the code that you just copied in your _R_ session, and relaunch the application, now with the additional argument `initialPanels` set:
 
 ```{r}
 if (interactive()) {
@@ -435,11 +435,11 @@ Now that we have an application consisting of a suitable collection of panels fo
 By default, each _Reduced dimension plot_ displays the first reduced dimension representation provided (contained in the `reducedDim` slot of the `SingleCellExperiment` object). 
 If additional reduced dimension representations are included, the one chosen for the display can be changed in the `Data parameters` collapsible box in the _Reduced dimension plot_ panel.
 
-**Action:** Use this control to show the t-SNE representation instead of the PCA.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Use this control to show the t-SNE representation instead of the PCA.
 
 Notably, the instance can be preconfigured to immediately display the t-SNE representation when the application is launched.
 
-**Action:** Run the following block of code to show two _Reduced dimension plot_ panels; one showing the PCA representation, one showing the t-SNE representation.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Run the following block of code to show two _Reduced dimension plot_ panels; one showing the PCA representation, one showing the t-SNE representation.
 
 ```{r}
 redDimArgs <- redDimPlotDefaults(sce, 2)
@@ -462,19 +462,19 @@ if (interactive()) {
 With default settings, all points are colored black.
 However, any provided row (for features) or column (for samples) annotation can be used to color the points.
 
-**Action:** To demonstrate this, open the `Visual parameters` collapsible box in the _Reduced dimension plot_ panel, and set `Color by:` to `Column data`.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** To demonstrate this, open the `Visual parameters` collapsible box in the _Reduced dimension plot_ panel, and set `Color by:` to `Column data`.
 Scroll through the dropdown menu that appears to see all the sample annotations that can be used to color the points.
 All these values are taken from the `colData` slot of the provided object.
 
-**Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
+> <i class="fa fa-wrench fa-2x"></i> **Action:** First, color the cells by `Cluster`, which contains the cluster labels that were assigned to the cells in the preprocessing step [in a previous section](#prepare-scrnaseq-data).
 Note how a discrete color scheme is selected, since the variable is categorical.
 
-**Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Next, color the cells by the log10-transformed number of detected genes (`log10_total_features_by_counts`).
 Notice how the color scale is now continuous.
 
 The instance can be preconfigured to control the coloring of data points, to display the same result on startup.
 
-**Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#choose-reduced-dimension).
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#choose-reduced-dimension).
 
 
 ```{r}
@@ -500,13 +500,13 @@ More information about this can be found in the `r Biocpkg("iSEE", "ecm.html", "
 
 In addition to coloring cells by the provided annotations as above, we can also color them by the observed values for a given feature (as provided in one of the `assays`).
 
-**Action:** Set `Color by:` to `Feature name` in the _Reduced dimension plot_, and select one of the genes from the dropdown menu.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Set `Color by:` to `Feature name` in the _Reduced dimension plot_, and select one of the genes from the dropdown menu.
 You can search for a gene of interest by typing in the dropdown box.
 You can also choose which assay should be used to extract the values to color according to.
 
 Again, the same result can be achieved by preconfiguring the application as follows.
 
-**Action:** Run the following block of code to set up 3 panels, all displaying the t-SNE representation.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Run the following block of code to set up 3 panels, all displaying the t-SNE representation.
 In the first panel, we color cells by their `Cluster` label.
 In the second and third panel, we display _CD79A_ and _CD74_, a combination of gene markers typically observed in B cells.
 
@@ -534,12 +534,12 @@ if (interactive()) {
 
 The `Color by: Sample name` option in the _Reduced dimension plot_ can also be used to highlight a single sample.
 
-**Action:** Set `Color by:` to `Sample name` in the _Reduced dimension plot_, and use the dropdown menu underneath to change the highlighted cell.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Set `Color by:` to `Sample name` in the _Reduced dimension plot_, and use the dropdown menu underneath to change the highlighted cell.
 
 Again, the same result can be achieved by preconfiguring the application as follows.
 Note that it is more robust to provide the numerical index of the sample in the `sce` object (see the `match` statements in the code chunk below).
 
-**Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
 We also open the _Visual parameters_ collapsible box to highlight the preconfigured options.
 
 ```{r}
@@ -566,7 +566,7 @@ Additional controls can be shown by clicking the check boxes for `Shape`, `Point
 The `Shape` and `Points` panels let you set the shape and size of points according to provided annotations (or to resize all points), and to set the point opacity.
 Here, you can also downsample points to increase the speed of rendering, which can be useful for data sets with large numbers of points.
 
-**Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Run the following block of code to continue editing the configuration of the two _Reduced dimension plot_ panels prepared in the [previous section](#color-by-feature).
 Here, we reduce the point size and increase the transparency (i.e. reduce the value for the alpha attribute).
 We also apply a downsampling grid of 100 horizontal and vertical bins to the plot, where only a single data point is plotted (if any) for each bin.
 Finally, we display the `Shape` and `Points` options.
@@ -606,11 +606,11 @@ The plot layout adapts automatically to the type of annotation(s) displayed.
 As a side note, categorical variables with "too many" unique values (which is typically the case for sample IDs, for instance) are represented as numeric variables, by replacing each value by an index.
 The limit for what is considered "too many" unique values can be set using `options(iSEE.maxlevels = 30)`.
 
-**Action:** Explore the different types of plots provided in the Column data or Row data plot panels by selecting different annotations as the `Column of interest (Y-axis)` and/or setting `X-axis:` to `Column data` and selecting an additional annotation.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Explore the different types of plots provided in the Column data or Row data plot panels by selecting different annotations as the `Column of interest (Y-axis)` and/or setting `X-axis:` to `Column data` and selecting an additional annotation.
 
 In the following code chunk we demonstrate the preconfiguration of an app instance that immediately displays two panels.
 
-**Action:** Run the following block of code to set up one _Column data plot_ and one _Row data plot_ panel.
+> <i class="fa fa-wrench fa-2x"></i> **Action:** Run the following block of code to set up one _Column data plot_ and one _Row data plot_ panel.
 We set up the _Column data plot_ panel to immediately examine the proportion of counts assigned to mitochondrial features in each cluster.
 We set up the _Row data plot_ panel to examine the proportion of cells with detectable expression against the log-transformed total counts for each gene.
 
