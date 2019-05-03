@@ -665,11 +665,11 @@ if (interactive()) {
 
 * Bioconductor landing page: [https://bioconductor.org/packages/iSEE/](https://bioconductor.org/packages/iSEE/)
 * Publication (F1000Research, 2018): [https://f1000research.com/articles/7-741/v1](https://f1000research.com/articles/7-741/v1)
-* Deployed examples: [https://marionilab.cruk.cam.ac.uk/](https://marionilab.cruk.cam.ac.uk/), code at [https://github.com/ltla/isee2018](https://github.com/ltla/isee2018)
+* Deployed examples: [https://marionilab.cruk.cam.ac.uk/](https://marionilab.cruk.cam.ac.uk/), code at [https://github.com/ltla/iSEE2018](https://github.com/ltla/iSEE2018)
   * Further deployments in the [https://github.com/federicomarini/iSEE_instances](https://github.com/federicomarini/iSEE_instances) repo
   * `r Biocpkg("iSEE")` in production: [http://www.teichlab.org/singlecell-treg](http://www.teichlab.org/singlecell-treg)
 * Custom panel examples: [https://github.com/kevinrue/iSEE_custom](https://github.com/kevinrue/iSEE_custom)
-* Development version (bug reports etc): [https://github.com/csoneson/isee](https://github.com/csoneson/isee)
+* Development version (bug reports etc): [https://github.com/csoneson/iSEE](https://github.com/csoneson/iSEE)
 
 ## Session info {-}
 
