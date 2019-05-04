@@ -659,13 +659,11 @@ On the X-axis, the first panel displays a discrete sample metadata variable, the
 featAssayArgs <- featAssayPlotDefaults(sce, 3)
 featAssayArgs[["ColorBy"]] <- "Column data"
 featAssayArgs[["ColorByColData"]] <- "Cluster"
-featAssayArgs[1, "YAxisFeatName"] <- match("CD3D", rownames(sce))
+featAssayArgs[["YAxisFeatName"]] <- match("CD3D", rownames(sce))
 featAssayArgs[1, "XAxis"] <- "Column data"
 featAssayArgs[1, "XAxisColData"] <- "Cluster"
-featAssayArgs[2, "YAxisFeatName"] <- match("CD3D", rownames(sce))
 featAssayArgs[2, "XAxis"] <- "Column data"
 featAssayArgs[2, "XAxisColData"] <- "log10_total_counts"
-featAssayArgs[3, "YAxisFeatName"] <- match("CD3D", rownames(sce))
 featAssayArgs[3, "XAxis"] <- "Feature name"
 featAssayArgs[3, "XAxisFeatName"] <- match("CD40LG", rownames(sce))
 featAssayArgs[["DataBoxOpen"]] <- TRUE
@@ -683,11 +681,70 @@ if (interactive()) {
 
 ### Linking panels and transmitting point selections {#transmit-point-selections}
 
-<!-- Examine panel chart -->
+
+In the example below, we configure three types of panels: a _Feature assay plot_, a _Reduced dimension plot_, and a _Column data plot_.
+For visual convenience, we color data points in all three panels by the cluster label.
+
+To demonstrat the feature, we define a Shiny brush in the _Feature assay plot_ panel to select cells with detectable levels of the _CD3E_ gene.
+For the other two panels, pay particular attention to the `"SelectByPlot"` instruction which declares that they should both receive the data points selected in the _Feature assay plot_ panel.
+In addition, we specify that the _Reduced dimension plot_ should highlight the selection by applying a transparency effect to _unselected_ data points.
+Alternatively, we use the _Column data plot_ to demonstrate how the selection can also be highlighted by applying a given color (here, red) to the selected data points.
+
+```{r}
+featAssayArgs <- featAssayPlotDefaults(sce, 2)
+featAssayArgs[1, "YAxisFeatName"] <- match("CD3D", rownames(sce))
+featAssayArgs$BrushData[[1]] <-  list(
+    xmin = 0.5, xmax = 12.5, ymin = 0.5, ymax = 5.7,
+    mapping = list(x = "X", y = "Y", group = "GroupBy"),
+    direction = "xy", 
+    brushId = "featAssayPlot1_Brush", outputId = "featAssayPlot1")
+featAssayArgs[1, "XAxis"] <- "Column data"
+featAssayArgs[1, "XAxisColData"] <- "Cluster"
+featAssayArgs[1, "ColorBy"] <- "Column data"
+featAssayArgs[1, "ColorByColData"] <- "Cluster"
+redDimArgs <- redDimPlotDefaults(sce, 2)
+redDimArgs[1, "SelectByPlot"] <- "Feature assay plot 1"
+redDimArgs[1, "Type"] <- match("TSNE", reducedDimNames(sce))
+redDimArgs[1, "ColorBy"] <- "Column data"
+redDimArgs[1, "ColorByColData"] <- "Cluster"
+redDimArgs[1, "SelectBoxOpen"] <- TRUE
+colDataArgs <- colDataPlotDefaults(sce, 2)
+colDataArgs[1, "SelectByPlot"] <- "Feature assay plot 1"
+colDataArgs[1, "SelectEffect"] <- "Color"
+colDataArgs[1, "YAxis"] <- "log10_total_counts"
+colDataArgs[1, "XAxis"] <- "Column data"
+colDataArgs[1, "XAxisColData"] <- "pct_counts_MT"
+colDataArgs[1, "ColorBy"] <- "Column data"
+colDataArgs[1, "ColorByColData"] <- "Cluster"
+colDataArgs[1, "SelectBoxOpen"] <- TRUE
+initialPanels <- DataFrame(
+    Name=c(
+        "Feature assay plot 1", "Reduced dimension plot 1", "Column data plot 1",
+        "Feature assay plot 2", "Reduced dimension plot 2", "Column data plot 2"),
+    Width=rep(4L, 3L),
+    Height=rep(400, 3L)
+)
+if (interactive()) {
+    iSEE(
+        sce,
+        redDimArgs = redDimArgs, colDataArgs = colDataArgs, featAssayArgs = featAssayArgs,
+        initialPanels = initialPanels
+    )
+}
+```
+
+Notably, iSEE can display active links transmitting point selections between panel using the "[Examine panel chart](#additional-controls)" menu.
+Visible panels that do not send or receive a selection are also shown.
+
+![](XXX_RueAlbrecht_iSEE/GraphSelectionLinks.png)
 
 ### Zooming into a plot subregion {#zoom-subregion}
 
 <!-- Describe how and add a code chunk -->
+
+### Applying filters to tables {#filter-table}
+
+<!-- Give a code chunk that shows how to preconfigure tables with filters -->
 
 ### Saving and restoring the state of the application {#save-and-restore-user-interface}
 
