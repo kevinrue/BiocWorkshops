@@ -641,6 +641,10 @@ if (interactive()) {
 
 <!-- Examine panel chart -->
 
+### Zooming into a plot subregion {#zoom-subregion}
+
+<!-- Describe how and add a code chunk -->
+
 ### Saving and restoring the state of the application {#save-and-restore-user-interface}
 
 <!-- Copy the entire 'Display panel settings' code, close and reopen app -->
